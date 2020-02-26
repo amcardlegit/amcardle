@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+
+<?php
+session_start();
+
+ if(!isset($_SESSION["amcardle13_40181771"])) 
+     
+    
+{
+header("Location: index.php?type=patient");
+}
+
+
+include("connection/connection.php");
+include("connection/password.php");
+?>
+<html>
+    <head>
+        <title>Contact Us</title>
+        <meta charset="UTF-8">
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat&display=swap" rel="stylesheet">
+        <link href="css/css2.css" rel="stylesheet" type="text/css"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href = "https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+
+
+
+        <style>
+
+
+
+            .w3-bar .w3-button {
+                padding: 20px;
+            }
+        </style>
+    <body>
+
+        <!-- Navbar (sit on top) -->
+        <div class="w3-top">
+            <div class="w3-bar w3-blue w3-card" id="myNavbar">
+                <img src="Images/MeighGPSurgeryLogo.png" width="60" height="60" style="float: left; margin: 5px 15px"/>
+     
+                <a href="clientloginsuccessful.php" class="w3-bar-item w3-button w3-wide">Meigh GP Surgery</a>
+
+
+
+                <!-- Right-sided navbar links -->
+                <div class="w3-right w3-hide-small">
+                 
+          
+                        <!--  <a href="contactus.php" class="w3-bar-item w3-button"><i class="fa fa-envelope"></i> Contact Us</a> -->
+             
+                        <a id="hovereffect" href="contactus.php" class="w3-bar-item w3-button"><img src="Images/user (1).png" width="30" height="30"> View Profile</a>
+                        <a href="contactus.php" class="w3-bar-item w3-button"><img src="Images/maail1.png" width="38" height="30"> Contact Us</a>
+                    <a href="clientlogin.php" class="w3-bar-item w3-button"><img src="Images/logout (1).png" width="30" height="30"> Log Out</a>
+                </div>
+                <!-- Hide right-floated links on small screens and replace them with a menu icon -->
+
+                <a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium" onclick="w3_open()">
+                    <i class="fa fa-bars"></i>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+</div>
+</div>
+
+<body>
+    <div class="pad">
+        <body>
+            </head>
+
+        <body>	
+
+
+            <div class="container">
+
+                <div class="col-sm-12 col-md-12  col-lg-12 ">
+
+                    <br>
+                    <br>
+                    <br>
+                  <!--
+                      <?php
+              
+            $name = $_SESSION["amcardle13_40181771"];
+            echo " <h1> <center style='margin: 15px 0px'> Welcome $name! <h1> </center > ";
+            ?>
+         -->
+                   <!-- <center> <h2>Contact Us</h2> </center> -->
+                    <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {
+  font-family: Montserrat;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Style inputs */
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #18C18C;
+  color: white;
+  padding: 10px 50px;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  border-radius: 20px;
+  font-weight: bold;
+  text-align: center;
+      font-family: Montserrat;
+}
+
+input[type=submit]:hover {
+  background-color: #2699FB;
+}
+
+/* Style the container/contact section */
+.container {
+  border-radius: 5px;
+  background-color: #EFEFEF
+  padding: 10px;
+}
+
+/* Create two columns that float next to eachother */
+.column {
+  float: left;
+  width: 50%;
+  margin-top: 6px;
+  padding: 20px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive layout - when the screen is less than 600px wide, make the two columns stack on top of each other instead of next to each other */
+@media screen and (max-width: 600px) {
+  .column, input[type=submit] {
+    width: 100%;
+    margin-top: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<h2></h2>
+<p></p>
+
+<div class="container">
+  <div style="text-align:center">
+    <h1>Contact Us</h1>
+    <p>Please complete the contact form below and Dr Brown will get back to you as soon as possible:</p>
+  </div>
+  <div class="row">
+    <div class="column">
+        <img src="Images/doctor.jpg" style="width:100%">
+     
+    </div>
+    <div class="column">
+        <form method='POST' action='contactus.php'>
+
+          <h6> Subject: </h6>
+        <input type="text" id="subject" name="subject" placeholder="Please enter a subject title..">
+        <h6> Select A Reason For Contact: </h6>
+      <!--  <label for="country">Reason For Contact: </label> -->
+        <select id="reason" name="reason">
+        <?php
+        $reasonSelect = "SELECT * FROM reason";
+        $reasonResult = mysqli_query($conn, $reasonSelect) or die(mysqli_error($conn));
+        
+        if(mysqli_num_rows($reasonResult) > 0) {
+            while ($row = mysqli_fetch_assoc($reasonResult)) {
+                $reasonId = $row["id"];
+                $reasonText = $row["reasons"];
+                
+                echo "
+            <option value='$reasonId'>$reasonText</option>
+                            "; 
+            }
+        }
+        
+        
+        ?>
+<!--            
+            <option value="medical">Medical</option>
+          <option value="account">Account</option>
+             <option value="support">Support</option>
+          <option value="other">Other</option>-->
+        </select>
+      <h6> Message: </h6>
+        <textarea id="subject" name="message" placeholder="Please enter your message here.." style="height:120px"></textarea>
+    
+        <input type="submit" name="submit" value="Submit">
+      </form>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
+        
+            <?php
+if(isset($_POST['submit'])){
+
+
+include("connection/connection.php");
+include("connection/password.php");
+
+$sentsubject = mysqli_real_escape_string($conn, $_POST["subject"]);
+$sentreason = mysqli_real_escape_string($conn, $_POST["reason"]);
+$sentmessage = mysqli_real_escape_string($conn, $_POST["message"]);
+$clientid = $_SESSION["amcardle13_id"];
+
+
+$innerQuery = "SELECT clients_MeighGPSurgery.id FROM usersss INNER JOIN clients_MeighGPSurgery ON userdetails_id = clients_MeighGPSurgery.id";
+$innerResult = mysqli_query($conn, $innerQuery) or die(mysqli_error($conn));
+
+if(mysqli_num_rows($innerResult) > 0) {
+    while($row = mysqli_fetch_assoc($innerResult)) {
+        $clientid = $row["id"];
+    }
+}
+
+
+$insertquery = "INSERT INTO contactGP_MeighGPSurgery(id, subject, reason, message, client_id) VALUES (null, '$sentsubject', '$sentreason', '$sentmessage', $clientid)";
+$resultquery = mysqli_query($conn, $insertquery) or die (mysqli_error($conn));
+echo "<center><h4>Thank you, your contact form has been submitted successfully! Dr Brown will be in contact shortly!</h4></center>";
+
+
+}
+?>
+
+                    </head>
+                    <body>
+                        <main>
+                            
+          
+                            </section>
+                        </main>
+                    </body>
+                    </html>
+
+
+
+
+
+
+
+
+                    <script>
+                        // Modal Image Gallery
+                        function onClick(element) {
+                            document.getElementById("img01").src = element.src;
+                            document.getElementById("modal01").style.display = "block";
+                            var captionText = document.getElementById("caption");
+                            captionText.innerHTML = element.alt;
+                        }
+
+
+                        // Toggle between showing and hiding the sidebar when clicking the menu icon
+                        var mySidebar = document.getElementById("mySidebar");
+
+                        function w3_open() {
+                            if (mySidebar.style.display === 'block') {
+                                mySidebar.style.display = 'none';
+                            } else {
+                                mySidebar.style.display = 'block';
+                            }
+                        }
+
+                        // Close the sidebar with the close button
+                        function w3_close() {
+                            mySidebar.style.display = "none";
+                        }
+                    </script>
+
+                    </body>
+                    </html>
